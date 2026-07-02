@@ -1,4 +1,4 @@
-const CACHE = "price-your-loaf-v2";
+const CACHE = "price-your-loaf-v3";
 const FILES = ["./", "./index.html", "./calculator.js", "./price-your-loaf-banner.png", "./app-icon.png", "./manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {
