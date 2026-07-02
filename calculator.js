@@ -20,6 +20,15 @@ export function sanitizeInputs(candidate = {}) {
   );
 }
 
+export function sanitizeProfile(candidate = {}) {
+  const hasEnvelope = candidate && typeof candidate.inputs === "object";
+  const loafName = hasEnvelope ? String(candidate.loafName ?? "").trim() : "";
+  return {
+    loafName: loafName || "My Loaf",
+    inputs: sanitizeInputs(hasEnvelope ? candidate.inputs : candidate),
+  };
+}
+
 export function calculatePricing(candidate) {
   const input = sanitizeInputs(candidate);
   if (input.batchSize <= 0) throw new Error("Batch size must be positive.");

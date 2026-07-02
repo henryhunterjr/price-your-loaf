@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { calculatePricing, sanitizeInputs } from "./calculator.js";
+import { calculatePricing, sanitizeInputs, sanitizeProfile } from "./calculator.js";
 
 test("matches the From Oven to Market production formula", () => {
   const result = calculatePricing({
@@ -51,4 +51,14 @@ test("sanitizes saved browser values", () => {
   assert.equal(result.batchSize, 12);
   assert.equal(result.hourlyRate, 22.5);
   assert.equal(result.packagingPerLoaf, 0.4);
+});
+
+test("restores a named loaf profile and migrates an older unnamed save", () => {
+  const named = sanitizeProfile({ loafName: " My Market White ", inputs: { batchSize: 8 } });
+  const legacy = sanitizeProfile({ batchSize: 6, hourlyRate: 20 });
+
+  assert.equal(named.loafName, "My Market White");
+  assert.equal(named.inputs.batchSize, 8);
+  assert.equal(legacy.loafName, "My Loaf");
+  assert.equal(legacy.inputs.batchSize, 6);
 });
