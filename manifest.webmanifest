@@ -1,0 +1,17 @@
+{
+  "name": "Price Your Loaf",
+  "short_name": "Price Your Loaf",
+  "description": "A From Oven to Market pricing calculator for cottage bakers.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fbf7ef",
+  "theme_color": "#173b34",
+  "icons": [
+    {
+      "src": "app-icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
